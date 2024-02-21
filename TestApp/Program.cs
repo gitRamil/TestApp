@@ -15,5 +15,3 @@ catch (Exception ex)
 {
     Console.WriteLine($"Приложение неожиданно прекратило работу: {ex.Message}.");
 }
-
-
