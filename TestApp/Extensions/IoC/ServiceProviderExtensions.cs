@@ -10,7 +10,7 @@ public static class ServiceProviderExtensions
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        services.AddTransient<IAppService, AppService>();
+        services.AddTransient<IAppService, ConsoleAppService>();
         services.AddTransient<ICommandService, CommandService>();
         services.AddTransient<IConsoleWorker, ConsoleWorkerService>();
         services.AddSingleton<ITransSingleton, TransactionService>();

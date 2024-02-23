@@ -3,19 +3,29 @@ using TestApp.Commands;
 
 namespace TestApp.Services;
 
-public class CommandService(ITransSingleton transSingleton, IConsoleWorker consoleWorker) : ICommandService
+public class CommandService : ICommandService
 {
-    private readonly Dictionary<string, ICommand> _commands = new()
+    private readonly Dictionary<string, ICommand> _commands;
+
+    public CommandService(ITransSingleton transSingleton, IConsoleWorker consoleWorker) =>
+        _commands = new Dictionary<string, ICommand>
+        {
+            {
+                ((List<string>)CommandNames)[0], new AddCommand(transSingleton, consoleWorker)
+            },
+            {
+                ((List<string>)CommandNames)[1], new GetCommand(transSingleton, consoleWorker)
+            },
+            {
+                ((List<string>)CommandNames)[2], new ExitCommand()
+            }
+        };
+
+    public IReadOnlyCollection<string> CommandNames { get; } = new List<string>
     {
-        {
-            "add", new AddCommand(transSingleton, consoleWorker)
-        },
-        {
-            "get", new GetCommand(transSingleton, consoleWorker)
-        },
-        {
-            "exit", new ExitCommand()
-        }
+        "add",
+        "get",
+        "exit"
     };
 
     public ICommand GetCommand(string? commandName)

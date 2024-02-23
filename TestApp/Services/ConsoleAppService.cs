@@ -3,7 +3,7 @@ using TestApp.Exceptions;
 
 namespace TestApp.Services;
 
-public class AppService(ICommandService commandService) : IAppService
+public class ConsoleAppService(ICommandService commandService) : IAppService
 {
     public void Run()
     {
@@ -11,7 +11,7 @@ public class AppService(ICommandService commandService) : IAppService
 
         while (!exit)
         {
-            Console.WriteLine("Введите команду (add, get, exit):");
+            Console.WriteLine($"Введите команду ({string.Join(", ", commandService.CommandNames)}):");
             var command = Console.ReadLine();
 
             try
