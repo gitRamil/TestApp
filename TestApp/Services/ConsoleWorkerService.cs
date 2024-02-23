@@ -3,7 +3,7 @@ using TestApp.Abstractions;
 using TestApp.Dtos;
 using TestApp.Helpers;
 
-namespace TestApp;
+namespace TestApp.Services;
 
 public class ConsoleWorkerService(ITransSingleton transaction) : IConsoleWorker
 {
@@ -26,6 +26,6 @@ public class ConsoleWorkerService(ITransSingleton transaction) : IConsoleWorker
     }
 
     public int GetTransactionId() => ConsoleHelper.ReadValue("Введите Id:", int.Parse);
-    
-    public void TransactionAddedSuccessfully() => ConsoleHelper.ReadValue("Введите Id:", int.Parse);
+
+    public void TransactionAddedSuccessfully() => Console.WriteLine("Транзакция была успешно добавлена");
 }

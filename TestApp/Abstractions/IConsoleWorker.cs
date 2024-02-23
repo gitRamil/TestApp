@@ -1,6 +1,6 @@
 ﻿using TestApp.Dtos;
 
-namespace TestApp;
+namespace TestApp.Abstractions;
 
 public interface IConsoleWorker
 {
